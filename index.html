@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <script src="assets/Script1.js?s"></script>
+    <link href="assets/Style1.css" rel="stylesheet" />
+
+    <title>DatePrangePicker like Google-Analytic</title>
+</head>
+<body>
+    <style>
+        .code {
+            display: block;
+            color: #9E9E9E;
+            font-size: 12px;
+            border: dashed 1px #656565;
+            padding: 5px;
+            margin: 5px;
+        }
+        .code span{
+            display:block;
+        }
+            .code b {
+               color: #FF9800;
+            }
+            .code strong {
+                color: #4CAF50;
+            }
+        .samples {
+            background: #ececec;
+            padding: 15px;
+        }
+    </style>
+    <div class="container-fluid">
+
+
+        <h4>
+            "Date range picker", i am improving a comparison feature to  select two date ranges into an ordinary Jquery "DatePicker" plugin.
+        </h4>
+
+
+        <hr />
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="samples">
+                    <div class="well">
+                        <strong>1.Example </strong> comparable , defined dates..
+                        <span class="code">
+                            <span>comparable  : <strong>true</strong>, </span>
+                            <span>compareWith : <strong>true</strong></span>
+                            <span>mode : <strong>'range'</strong></span>
+
+                        </span>
+                    </div>
+                    <input id="daterangepicker-field2" value="" autocomplete="off" />
+                </div>
+                <hr /> 
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="samples">
+                    <div class="well">
+                        <strong>2.Example</strong> comparable but no define
+                        <span class="code">
+                            <span>comparable  : <strong>true</strong>, </span>
+                            <span>compareWith : <b>false</b></span>
+                            <span>mode : <strong>'range'</strong></span>
+
+                        </span>
+                    </div>
+                    <input id="daterangepicker-field3" value="" autocomplete="off" />
+                </div>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="samples">
+                    <div class="well">
+                        <strong>3.Example</strong> without comparison bu select range.
+                        <span class="code">
+                            <span>comparable  : <b>false</b>, </span>
+                            <span>compareWith : <b>false</b>,</span>
+                            <span>instanlyApply: <strong>true</strong>,</span>
+                            <span>mode : <strong>'range'</strong></span>
+
+                        </span>
+                    </div>
+                    <input id="daterangepicker-field4" value="" autocomplete="off" />
+                </div>
+                <hr />
+            </div>
+            <div class="col-sm-6 col-xs-12">
+            <div class="samples">
+                <div class="well">
+                    <strong>3.Example</strong> single date, no-range, no-comparison 
+                    <span class="code">
+                        <span>comparable  : <b>false</b>, </span>
+                        <span>compareWith : <b>false</b></span>
+                        <span>compareWith : <b>false</b></span>
+                        <span>mode : <strong>'single'</strong></span>
+                    </span>
+                </div>
+                <input id="daterangepicker-field5" value="" autocomplete="off" />
+            </div>
+            <hr />
+        </div>
+        </div>
+
+
+
+        <script>
+            var dt1 = [new Date("2018-11-05"), new Date("2018-11-08")];
+            var dt2 = [new Date("2018-09-05"), new Date("2018-09-08")];
+
+            window.addEventListener("load", function (event) {
+                jQuery.curCSS = function (element, prop, val) {
+                    return jQuery(element).css(prop, val);
+                };
+                var to = new Date();
+                var from = new Date();
+                $('#daterangepicker-field2').DatePicker({
+                    inline: false,
+                    date: dt1,
+                    date2: dt2,
+                    comparable: !0,
+                    compareWith: !0,
+                    calendars: 3,
+                    mode: 'range',
+                    position: 'bottom',
+                    instanlyApply: !1,
+                    current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
+                    instanlyApply: !1,       // tarihler seçilir seçilmez APPLY functionunu çalıştırır.
+                    language: "tr",//en is default,
+
+                    onChange: function (dates, el, isCompared) {
+
+                    }
+                });
+
+                $('#daterangepicker-field3').DatePicker({
+                    inline: false,
+                    date: dt1,
+                    //date2: dt2,
+                    comparable: !0,
+                    //compareWith: !0,
+                    calendars: 3,
+                    mode: 'range',
+                    position: 'bottom',
+                    instanlyApply: !1,
+                    current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
+                    instanlyApply: !1,       // tarihler seçilir seçilmez APPLY functionunu çalıştırır.
+                    language: "tr",//en is default,
+
+                    onChange: function (dates, el, isCompared) {
+
+                    }
+                });
+
+                $('#daterangepicker-field4').DatePicker({
+                    inline: false,
+                    date: dt1,
+                    //date2: dt2,
+                    comparable: !1,
+                    compareWith: !1,
+                    calendars: 3,
+                    mode: 'range',
+                    position: 'bottom',
+                    current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
+                    instanlyApply: !0,       // tarihler seçilir seçilmez APPLY functionunu çalıştırır.
+                    language: "tr",//en is default,
+                    onChange: function (dates, el, isCompared) {
+                        //alert(dates);
+                    }
+                });
+
+                $('#daterangepicker-field5').DatePicker({
+                    inline: false,
+                    date: dt1[0],
+                    calendars: 3,
+                    mode: 'single',
+                    position: 'bottom',
+                    current: new Date(to.getFullYear(), to.getMonth() - 1, 1),
+                    instanlyApply: !0,       // tarihler seçilir seçilmez APPLY functionunu çalıştırır.
+                    //language: "tr",//en is default,
+                    onChange: function (dates, el, isCompared) {
+                        //alert(dates);
+                    }
+                });
+
+            });
+        </script>
+
+
+
+
+        <!-- container end -->
+    </div>
+
+</body>
+</html>
