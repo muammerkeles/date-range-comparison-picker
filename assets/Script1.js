@@ -1,5 +1,9 @@
-﻿/* 
- * 'Date Range Comparison Picker 2.1.0'
+/* 
+ * 'Date Range Comparison Picker 2.2.0'
+ *	Gelecek dönem tarihlerini seçme özelliği eklendi;
+ 			selectFutureDay	 : false / true
+      selectDisableDay : false / true
+      
  * improving the plugin to works like Google Analytics Specifications. by Muammer Keleş.
  *
  * Thanks to first developer is Justin Stern.
@@ -219,6 +223,8 @@
                  * (as from date.getTime(), date.valueOf()), or a date string 
                  * parseable by Date.parse().
                  */
+                selectFutureDay: !1,
+                selectDisableDay: !1,
                 date: null,
                 date2: null,
                 comparable: !1,    /// comparison ormunu göster/göterme
@@ -853,7 +859,11 @@
                     var options = $(this).data('datepicker');
                     var parentEl = el.parent();
 
-                    if (parentEl.hasClass('datepickerDisabled') || parentEl.hasClass('datepickerFuture')) {
+                    if (parentEl.hasClass('datepickerFuture') && options.selectFutureDay!=true) {
+                        console.log("return false");
+                        return false;
+                    }
+                    if (parentEl.hasClass('datepickerDisabled') && options.selectDisableDay!=true) {
                         console.log("return false");
                         return false;
                     }
@@ -1646,3 +1656,28 @@
         };
     };
 })();
+
+// documentation of introjs
+//https://github.com/usablica/intro.js/blob/master/example/programmatic/index.html
+function startIntro(){
+        var intro = introJs();
+          intro.setOptions({
+            nextLabel:"Sonraki",
+            nextLabel:"Önceki",
+            skipLabel:"İntroyu Geç",
+            doneLabel:"Bitir",
+            steps: [
+              {
+                element: '#step1',
+                intro: "ilk örneğin paneli"
+              },
+              {
+                element: '#step1a',
+                intro: "üzerine tıklayıp,<i>Range Comparison Picker</i> 'ın açılmasını sağlayın",
+                position: 'right'
+              }
+            ]
+          });
+          intro.start();
+      }
+startIntro();
